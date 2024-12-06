@@ -1,14 +1,19 @@
 import React, { useContext } from 'react';
 import { ContextGlobal } from './utils/global.context';
 import { NavLink } from 'react-router';
+import { ActionTypes } from '../actions/actions';
 
 const Navbar = () => {
-  const { theme, toggleTheme } = useContext(ContextGlobal);
+  const { state,dispatch } = useContext(ContextGlobal);
+
+  const toggleTheme = () => {
+      dispatch({ type: ActionTypes.TOGGLE_THEME });
+  };
 
   return (
     <nav
       className={`w-full px-4 py-3 ${
-        theme === 'dark' ? 'bg-gray-800 text-white' : 'bg-white text-gray-800'
+        state.theme === 'dark' ? 'bg-gray-800 text-white' : 'bg-white text-gray-800'
       } shadow-md`}
     >
       <div className="flex justify-between items-center max-w-7xl mx-auto">
@@ -44,7 +49,7 @@ const Navbar = () => {
             border-gray-300 dark:border-gray-700 
             hover:bg-gray-100 dark:hover:bg-gray-700 transition"
         >
-          {theme === 'dark' ? 'Light' : 'Dark'}
+          {state.theme === 'dark' ? 'Light' : 'Dark'}
         </button>
       </div>
     </nav>
