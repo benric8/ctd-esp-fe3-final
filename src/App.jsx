@@ -9,7 +9,7 @@ import Detail from "./pages/Detail";
 import Contact from "./pages/Contact";
 
 function App() {
-  
+   
   return (
     <ContextProvider>
       
