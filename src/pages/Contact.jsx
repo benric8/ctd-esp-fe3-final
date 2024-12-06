@@ -1,16 +1,25 @@
-import React from 'react'
-import Form from '../components/Form'
-
-//Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
+import React, { useContext } from 'react';
+import Form from '../components/Form';
+import { ContextGlobal } from '../components/utils/global.context';
 
 const Contact = () => {
-  return (
-    <div>
-      <h2>Want to know more?</h2>
-      <p>Send us your questions and we will contact you</p>
-      <Form/>
-    </div>
-  )
-}
+  const { state } = useContext(ContextGlobal); 
 
-export default Contact
+  
+  const isLightTheme = state.theme === 'light' ? true : false;
+
+  return (
+    <div
+      className={` p-8 transition-all duration-300 ${
+        !isLightTheme ? "bg-gray-900 text-gray-200" : "bg-gray-100 text-gray-800"
+      }`}
+    >
+      <h2 className="text-3xl font-semibold mb-4">Want to know more?</h2>
+      <p className="text-lg mb-8">Send us your questions and we will contact you</p>
+      
+      <Form />
+    </div>
+  );
+};
+
+export default Contact;
